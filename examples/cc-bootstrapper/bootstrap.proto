@@ -1,0 +1,54 @@
+syntax = "proto3";
+option go_package = "roshpr.net/examples/cc-bootstrapper/bootstrap";
+
+message BootStrapConfig {
+  string type = 1;
+  string arch = 2;
+  int64 cores = 3;
+}
+message BootStrapResponse {
+  string type = 1;
+  string arch = 2;
+  int64 cores = 3;
+}
+service Bootstrap {
+  rpc Create(BootStrapConfig) returns(BootStrapResponse);
+}
+
+/*
+# Define the Pydantic models
+class CPU(BaseModel):
+    type: str
+    arch: str
+    cores: int
+
+class Memory(BaseModel):
+    physical: int
+    real: int
+    user: int
+
+class Interface(BaseModel):
+    ipv4s: str
+    netmask: str
+    mac: str
+    dhcp: bool
+    vnet_id: Optional[Union[str, None]]
+
+class SystemConfiguration(BaseModel):
+    cpu: CPU
+    memory: Memory
+    default_gateway: str
+    management_interface: str
+    interfaces: List[Interface]
+    operating_system: str
+    hypervisor_platform: str
+    uuid: str
+    instance_id: str
+    hostname: str
+    fingerprint: str
+    region: str
+    availability_zone: str
+    vnet_id: str
+    account_id: str
+    autoscale_id: str
+ */

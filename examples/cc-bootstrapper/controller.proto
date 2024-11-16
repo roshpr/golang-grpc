@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "roshpr.net/examples/cc-bootstrapper/controller";
+
+message ConnectorCtrlReq {
+  string type = 1;
+  string tenant_id = 2;
+  int64 org_id = 3;
+  string req_type = 4;
+}
+
+message ConnectorCtrlResp {
+  string repo_server = 1;
+}
+
+service ControllerRequest {
+  rpc fetch(ConnectorCtrlReq) returns (ConnectorCtrlResp);
+}
