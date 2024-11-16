@@ -33,8 +33,8 @@ func (c controllerServer) Fetch(ctx context.Context, req *controller.ConnectorCt
 	}, nil
 }
 func main() {
-
-	lis, err := net.Listen("tcp", ":8080")
+	serverPort := ":8080"
+	lis, err := net.Listen("tcp", serverPort)
 	if err != nil {
 		log.Fatal("failed to listen:", err)
 	}
@@ -43,7 +43,7 @@ func main() {
 	ctrlservice := &controllerServer{}
 	bootstrap.RegisterBootstrapServer(server, bsservice)
 	controller.RegisterControllerRequestServer(server, ctrlservice)
-
+	log.Print("Listening on port " + serverPort)
 	err = server.Serve(lis)
 	if err != nil {
 		log.Fatal("failed to serve:", err)
