@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 	"roshpr.net/example/cc-bootstrapper/bootstrap"
@@ -41,8 +42,11 @@ func main() {
 	server := grpc.NewServer()
 	bsservice := &bsServer{}
 	ctrlservice := &controllerServer{}
+	log.Print("Register services")
 	bootstrap.RegisterBootstrapServer(server, bsservice)
 	controller.RegisterControllerRequestServer(server, ctrlservice)
+	log.Print("Configure reflection")
+	reflection.Register(server)
 	log.Print("Listening on port " + serverPort)
 	err = server.Serve(lis)
 	if err != nil {
