@@ -17,7 +17,6 @@ const (
 
 var (
 	addr = flag.String("addr", "https://repo.zscalerlabs.com:443", "the address to connect to")
-	name = flag.String("name", defaultName, "Name to greet")
 )
 
 func main() {

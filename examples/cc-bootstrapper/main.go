@@ -29,6 +29,7 @@ type controllerServer struct {
 }
 
 func (c controllerServer) Fetch(ctx context.Context, req *controller.ConnectorCtrlReq) (*controller.ConnectorCtrlResp, error) {
+	log.Print("Received Controller request to Fetch service")
 	return &controller.ConnectorCtrlResp{
 		RepoServer: repo,
 	}, nil
